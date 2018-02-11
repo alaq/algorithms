@@ -2,7 +2,6 @@ function insertionSort(array) {
   let sorted = [array.shift()]
   while (array.length) {
     const newElement = array.shift()
-    console.log(sorted, newElement, array)
     if (newElement <= sorted[0]) {
       sorted.unshift(newElement)
     } else if (newElement >= sorted[sorted.length - 1]) {
@@ -14,7 +13,6 @@ function insertionSort(array) {
         if (typeof sorted[i] !== 'number') low = -Infinity
         if (typeof sorted[i] !== 'number') high = Infinity
         if (newElement > low && newElement <= high) {
-          console.log(newElement, 'between', low, high, 'in', sorted)
           sorted.splice(i + 1, 0, newElement)
           break
         }
