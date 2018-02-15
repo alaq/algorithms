@@ -34,17 +34,42 @@ class BST {
     }
   }
 
-  remove(value) {
+  remove(value, parent = null) {
     // Write your code here.
     if (value === this.value) {
       if (!this.left && !this.right) this.value = null
-      else {
-        
+      else if (!this.left || !this.right) {
+        // no child
+        // one child
+        if (!parent) console.log('damn')
+        else if (!this.left && parent.left === this) parent.left = this.left
+        else if (!this.left && parent.right === this) parent.right = this.left
+        else if (!this.right && parent.left === this) parent.left = this.right
+        else if (!this.right && parent.right === this) parent.right = this.right
+      } else if (!parent) {
+        if (this.left) {
+          this.value = this.left.value
+          this.left = this.left.left
+          this.right = this.left.right
+        } else if (this.right) {
+          this.value = this.right.value
+          this.left = this.right.left
+          this.right = this.right.right
+        }
+      } else {
+        // two children, first we find the minimum in the right sub tree
+        this.value = this.right.getMin()
+        this.right.remove(this.value, this)
       }
     }
-    if (value > this.value && this.right) this.right.remove(value)
-    if (value < this.value && this.left) this.left.remove(value)
+    if (value > this.value && this.right) this.right.remove(value, this)
+    if (value < this.value && this.left) this.left.remove(value, this)
     // Do not edit the return statement of this method.
     return this
+  }
+
+  getMin() {
+    if (!this.left) return this.value
+    else return this.left.getMin()
   }
 }
