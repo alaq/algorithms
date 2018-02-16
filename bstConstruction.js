@@ -39,7 +39,7 @@ class BST {
     if (value === this.value) {
       if (this.left && this.right) {
         this.value = this.right.getMin()
-        this.right.remove(this.value, this)
+        this.right.remove(value, this)
       } else if (parent === null) {
         if (this.left) {
           this.value = this.left.value
@@ -50,13 +50,13 @@ class BST {
           this.left = this.right.left
           this.right = this.right.right
         } else {
+          console.log('removing', this.value)
           this.value = null
         }
       } else if (this.left === null && parent.left === this) parent.left = this.left
       else if (this.left === null && parent.right === this) parent.right = this.left
       else if (this.right === null && parent.left === this) parent.left = this.right
       else if (this.right === null && parent.right === this) parent.right = this.right
-      else console.log('oops')
     } else if (value > this.value && this.right) this.right.remove(value, this)
     else if (value < this.value && this.left) this.left.remove(value, this)
     // Do not edit the return statement of this method.
@@ -78,21 +78,32 @@ function inOrderTraverse(tree, array) {
   return array
 }
 
-const tree = new BST(10)
-  .insert(5)
-  .insert(15)
-  .insert(22)
-  .insert(17)
-  .insert(34)
-  .insert(7)
-  .insert(2)
-  .insert(5)
-  .insert(1)
-  .insert(35)
-  .insert(27)
-  .insert(16)
-  .insert(30)
-  .insert(22)
-  .remove(17)
-
+const tree = new BST(10).insert(5)
+tree.insert(15)
+console.log(inOrderTraverse(tree, []))
+tree.insert(22)
+console.log(inOrderTraverse(tree, []))
+tree.insert(17)
+console.log(inOrderTraverse(tree, []))
+tree.insert(34)
+console.log(inOrderTraverse(tree, []))
+tree.insert(7)
+console.log(inOrderTraverse(tree, []))
+tree.insert(2)
+console.log(inOrderTraverse(tree, []))
+tree.insert(5)
+console.log(inOrderTraverse(tree, []))
+tree.insert(1)
+console.log(inOrderTraverse(tree, []))
+tree.insert(35)
+console.log(inOrderTraverse(tree, []))
+tree.insert(27)
+console.log(inOrderTraverse(tree, []))
+tree.insert(16)
+console.log(inOrderTraverse(tree, []))
+tree.insert(30)
+console.log(inOrderTraverse(tree, []))
+tree.remove(22)
+console.log(inOrderTraverse(tree, []))
+tree.remove(17)
 console.log(inOrderTraverse(tree, []))
