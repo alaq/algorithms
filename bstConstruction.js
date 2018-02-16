@@ -11,11 +11,11 @@ class BST {
 
   insert(value) {
     // Write your code here.
-    if (value > this.value) {
-      if (!this.right) this.right = new BST(value)
+    if (value >= this.value) {
+      if (this.right === null) this.right = new BST(value)
       else this.right.insert(value)
     } else if (value < this.value) {
-      if (!this.left) this.left = new BST(value)
+      if (this.left === null) this.left = new BST(value)
       else this.left.insert(value)
     }
     // Do not edit the return statement of this method.
@@ -26,50 +26,57 @@ class BST {
     // Write your code here.
     if (value === this.value) return true
     if (value > this.value) {
-      if (!this.right) return false
+      if (this.right === null) return false
       else return this.right.contains(value)
     } else {
-      if (!this.left) return false
+      if (this.left === null) return false
       else return this.left.contains(value)
     }
   }
 
   remove(value, parent = null) {
+    console.log('removing', value)
     // Write your code here.
     if (value === this.value) {
-      if (!this.left && !this.right) this.value = null
-      else if (!this.left || !this.right) {
-        // no child
-        // one child
-        if (!parent) console.log('damn')
-        else if (!this.left && parent.left === this) parent.left = this.left
-        else if (!this.left && parent.right === this) parent.right = this.left
-        else if (!this.right && parent.left === this) parent.left = this.right
-        else if (!this.right && parent.right === this) parent.right = this.right
-      } else if (!parent) {
+      if (this.left && this.right) {
+        this.value = this.right.getMin()
+        this.right.remove(this.value, this)
+      } else if (parent === null) {
         if (this.left) {
           this.value = this.left.value
-          this.left = this.left.left
           this.right = this.left.right
+          this.left = this.left.left
         } else if (this.right) {
           this.value = this.right.value
           this.left = this.right.left
           this.right = this.right.right
+        } else {
+          this.value = null
         }
-      } else {
-        // two children, first we find the minimum in the right sub tree
-        this.value = this.right.getMin()
-        this.right.remove(this.value, this)
-      }
-    }
-    if (value > this.value && this.right) this.right.remove(value, this)
-    if (value < this.value && this.left) this.left.remove(value, this)
+      } else if (this.left === null && parent.left === this) parent.left = this.left
+      else if (this.left === null && parent.right === this) parent.right = this.left
+      else if (this.right === null && parent.left === this) parent.left = this.right
+      else if (this.right === null && parent.right === this) parent.right = this.right
+      else console.log('oops')
+    } else if (value > this.value && this.right) this.right.remove(value, this)
+    else if (value < this.value && this.left) this.left.remove(value, this)
     // Do not edit the return statement of this method.
     return this
   }
 
   getMin() {
-    if (!this.left) return this.value
+    if (this.left === null) return this.value
     else return this.left.getMin()
   }
 }
+
+const tree = new BST(10)
+  .insert(5)
+  .insert(15)
+  .insert(5)
+  .insert(2)
+  .insert(14)
+  .insert(22)
+
+console.log(tree)
+console.log(tree.left.right)
