@@ -35,7 +35,6 @@ class BST {
   }
 
   remove(value, parent = null) {
-    console.log('removing', value)
     // Write your code here.
     if (value === this.value) {
       if (this.left && this.right) {
@@ -70,13 +69,30 @@ class BST {
   }
 }
 
+function inOrderTraverse(tree, array) {
+  if (tree !== null) {
+    inOrderTraverse(tree.left, array)
+    array.push(tree.value)
+    inOrderTraverse(tree.right, array)
+  }
+  return array
+}
+
 const tree = new BST(10)
   .insert(5)
   .insert(15)
-  .insert(5)
-  .insert(2)
-  .insert(14)
   .insert(22)
+  .insert(17)
+  .insert(34)
+  .insert(7)
+  .insert(2)
+  .insert(5)
+  .insert(1)
+  .insert(35)
+  .insert(27)
+  .insert(16)
+  .insert(30)
+  .insert(22)
+  .remove(17)
 
-console.log(tree)
-console.log(tree.left.right)
+console.log(inOrderTraverse(tree, []))
