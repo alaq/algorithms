@@ -1,5 +1,9 @@
 function deletionDistance(string1, string2) {
-  console.log(string1)
+  const superSet1 = makeSuperSet(string1)
+  const superSet2 = makeSuperSet(string2)
+  for (let i = superSet1.length - 1; i >= 0; i--) {
+    if (superSet2.includes(superSet1[i])) return string1.length + string2.length - 2 * superSet1[i].length
+  }
 }
 
 function makeSuperSet(string) {
@@ -14,4 +18,4 @@ function makeSuperSet(string) {
   return superSet
 }
 
-console.log(makeSuperSet('hello'))
+console.log(deletionDistance('dog', 'frog'))
