@@ -1,3 +1,5 @@
+// NAIVE WAY
+
 function deletionDistance(string1, string2) {
   const superSet1 = makeSuperSet(string1)
   const superSet2 = makeSuperSet(string2)
@@ -18,4 +20,18 @@ function makeSuperSet(string) {
   return superSet
 }
 
-console.log(deletionDistance('dog', 'frog'))
+// console.log(deletionDistance('dog', 'frog'))
+
+// DYNAMIC PROGRAMMING WAY
+
+function deletionDistanceDynamicProgramming(string1, string2) {
+  const matrix = []
+
+  for (let i = 0; i < string1.length; i++) {
+    for (let i = 0; i < string1.length; i++) {}
+  }
+
+  return matrix
+}
+
+console.log(deletionDistanceDynamicProgramming('dog', 'frog'))
