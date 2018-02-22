@@ -11,7 +11,7 @@ function levenshteinDistance(str1, str2) {
 
   for (let c = 1; c < str2.length + 1; c++) {
     for (let r = 1; r < str1.length + 1; r++) {
-      if (str1[c - 1] === str2[r - 1]) matrix[c][r] = matrix[c - 1][r - 1]
+      if (str2[c - 1] === str1[r - 1]) matrix[c][r] = matrix[c - 1][r - 1]
       else matrix[c][r] = 1 + Math.min(matrix[c][r - 1], matrix[c - 1][r], matrix[c - 1][r - 1])
     }
   }
