@@ -4,7 +4,9 @@ function riverSizes(matrix) {
   )
 
   function followRiver(row, column) {
+      
     if (matrix[row][column] === 1 && visitedMatrix[row][column] !== 1) {
+        if (matrix[row][column + 1] === 1)
     }
   }
 
