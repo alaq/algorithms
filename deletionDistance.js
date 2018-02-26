@@ -4,20 +4,21 @@ function deletionDistance(string1, string2) {
   const superSet1 = makeSuperSet(string1)
   const superSet2 = makeSuperSet(string2)
   for (let i = superSet1.length - 1; i >= 0; i--) {
-    if (superSet2.includes(superSet1[i])) return string1.length + string2.length - 2 * superSet1[i].length
+    if (superSet2.includes(superSet1[i]))
+      return string1.length + string2.length - 2 * superSet1[i].length
   }
 }
 
-function makeSuperSet(string) {
-  let superSet = ['']
+function makePowerset(string) {
+  let powerset = ['']
   for (let i = 0; i < string.length; i++) {
     var tempSet = []
-    for (let j = 0; j < superSet.length; j++) {
-      tempSet.push(superSet[j] + string[i])
+    for (let j = 0; j < powerset.length; j++) {
+      tempSet.push(powerset[j] + string[i])
     }
-    superSet = superSet.concat(tempSet)
+    powerset = powerset.concat(tempSet)
   }
-  return superSet
+  return powerset
 }
 
 // console.log(deletionDistance('dog', 'frog'))
