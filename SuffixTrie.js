@@ -29,7 +29,7 @@ class SuffixTrie {
       current = current[string[0]]
       string = string.slice(1)
     }
-    return current.endSymbol === '*'
+    return current[this.endSymbol] === true
   }
 }
 
