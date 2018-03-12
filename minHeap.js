@@ -4,7 +4,7 @@ class MinHeap {
   }
 
   buildHeap(array) {
-    // Write your code here.
+    
   }
 
   siftDown() {
