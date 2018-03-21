@@ -1,1 +1,17 @@
 * Notes
+** Numbers
+*** Modulo
+*** Bitwise operators
+    They deal with every level of the binary. Like 101 & 010 will be 000.
+**** & is the Bitwise AND
+**** | is the Bitwise OR
+**** << shift one way
+***** so we're moving the binary in tha direction. The ones leaving are just discarded.
+***** it's akin to doing floor(half(x))
+**** >> shift the other way
+***** basically a double
+**** ~ i.e. NOT
+**** Reminder:
+***** (1234).toString(2) or 1234..toString(2) to convert a decimal to binary
+***** The other way around is done with parseInt('1001001011001', 2)
+***** lon10 is what power to raise the base to get the value
