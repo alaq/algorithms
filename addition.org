@@ -1,0 +1,6 @@
+So let's try this. We are going to do some JavaScript in org-mode:
+
+#+BEGIN_SRC js
+ls -a
+#+END_SRC
+
