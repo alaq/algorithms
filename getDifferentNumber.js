@@ -37,3 +37,21 @@ function swap(arr, i) {
 }
 
 console.log(getDifferentNumberInPlace([5,2,4,1,0]))
+
+// other solution from pramp
+function getDifferentNumberPramp(arr) {
+    // your code goes here
+    for (var i = 0, zero = false; i < arr.length; i++) {
+        if (arr[i] === 0) zero = true
+    }
+    if (!zero) return 0
+    for (let i = 0; i < arr.length; i++) {
+        let temp = arr[i] >= 0 ? arr[i] : arr[i] * -1
+        if (!arr[temp] || arr[temp] === 0) arr[temp] = -1
+        else if (arr[temp] > 0) arr[temp] *= -1
+    }
+    for (let i = 1; i < arr.length; i++) {
+        if (arr[i] > 0) return i
+    }
+    return arr.length
+}
