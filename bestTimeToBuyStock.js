@@ -1,10 +1,16 @@
-function bestTimeToBuyStock(prices) {
-    let max = new Array(prices.length).fill(0)
-    let min = new Array(prices.length).fill(0)
-    for (let i = 1; i < prices.length; i++) {
-        min[i] = Math.min(min[i-1], prices[i])
-        max[i] = Math.max(max[i-1], max[i-1] + prices[i] - )
+// https://leetcode.com/problems/best-time-to-buy-and-sell-stock/description/
 
+/**
+ * @param {number[]} prices
+ * @return {number}
+ */
+
+function bestTimeToBuyStock(prices) {
+    let max = 0
+    let min = prices[0]
+    for (let i = 1; i < prices.length; i++) {
+        min = Math.min(min, prices[i])
+        max = Math.max(max, prices[i] - min)
     }
     return max
 }
