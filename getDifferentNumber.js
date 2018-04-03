@@ -26,7 +26,7 @@ function getDifferentNumberInPlace(arr) {
     for (let i = 0; i < arr.length; i++) {
         if (arr[i] !== i) return i
     }
-    return arr.length + 1
+    return arr.length 
 }
 
 function swap(arr, i) {
