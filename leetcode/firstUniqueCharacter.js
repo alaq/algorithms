@@ -18,3 +18,14 @@ var firstUniqChar = function(s) {
 console.log(firstUniqChar('loveleetcode'))
 console.log(firstUniqChar('cc'))
 console.log(firstUniqChar('aadadaad'))
+
+var firstUniqChar2 = function(s) {
+    for (let i = 0; i < s.length; i++) {
+        if (s.lastIndexOf(s[i]) === s.indexOf(s[i])) return i
+    }
+    return -1
+};
+
+console.log(firstUniqChar2('loveleetcode'))
+console.log(firstUniqChar2('cc'))
+console.log(firstUniqChar2('aadadaad'))
