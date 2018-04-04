@@ -26,3 +26,13 @@ function swap(arr, i, j) {
 let nums = [1, 0, 1] 
 moveZeroes(nums)
 console.log(nums)
+
+function moveZeroesOptimal(nums) {
+    for (let lastZero = 0, i = 0; i < nums.length; i++) {
+        if (nums[i] !== 0) swap(nums, lastZero++, i)
+    }
+}
+
+let nums2 = [1, 0, 1]
+moveZeroes(nums2)
+console.log(nums2)
