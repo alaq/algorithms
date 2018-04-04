@@ -2,7 +2,6 @@
  * @param {character[]} chars
  * @return {number}
  */
-
 var compress = function(chars) {
     let i = 0
     let current = chars[0]
@@ -14,11 +13,13 @@ var compress = function(chars) {
             c++
         }
         if (c > 0) {
-            chars.splice(i+1, c, c + 1)
+            chars.splice(i+1, c, (c + 1).toString().split(''))
         }
         i = i + c + 1
     }
-    return chars.filter(char => char)
+    chars = chars.filter(char => char)
+    return chars.length
 };
 
 console.log(compress(['a', 'a', 'b', 'b', 'b']))
+console.log(compress(["a","a","b","b","c","c","c"]))
