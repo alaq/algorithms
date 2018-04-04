@@ -7,18 +7,20 @@
  */
 var merge = function(nums1, m, nums2, n) {
     let len = m + n
+    m--
+    n--
     while (len--) {
-        if (nums1[m] > nums1[n]) {
+        if (n < 0 || nums1[m] > nums2[n]) {
             nums1[len] = nums1[m]
             m--
         } else {
-            nums1[len] = nums1[n]
+            nums1[len] = nums2[n]
             n--
         }
     }
 };
 
-let nums1 = [1], m = 1, nums2 = [], n = 0
+let nums1 = [0], m = 0, nums2 = [1], n = 1
 merge(nums1, m, nums2, n)
 
 console.log(nums1)
