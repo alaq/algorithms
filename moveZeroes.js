@@ -34,5 +34,5 @@ function moveZeroesOptimal(nums) {
 }
 
 let nums2 = [1, 0, 1]
-moveZeroes(nums2)
+moveZeroesOptimal(nums2)
 console.log(nums2)
