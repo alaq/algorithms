@@ -46,3 +46,4 @@ function binarySearch(arr, target, low, high) {
     return -1
 }
 
+console.log(search([1,1], 0))
