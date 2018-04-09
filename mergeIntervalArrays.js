@@ -35,3 +35,48 @@ function merge(intervals) {
     
     return olap
 }
+
+function merge(intervals) {
+    let ms = intervals[0][0], me = intervals[0][1]
+    let olap = [];
+    
+    for (let i = 1; i < intervals.length; i++) {
+        let cs = intervals[i][0], ce = intervals[i][1]
+        if (cs > me) {
+            olap.push([ms, me])
+            ms = cs, me = ce
+        } else {
+            me = Math.max(me, ce)
+        }
+    }
+    olap.push([ms, me])
+    return olap
+}
+
+
+function merge (meetings) {
+    // Edge Case
+    if (!meetings || !meetings.length) return [];
+    
+    meetings.sort((a,b) => a[0] - b[0]);
+    
+    const mIs = [];
+    let mS = meetings[0][0];
+    let mE = meetings[0][1];
+    
+    for (let i = 1; i < meetings.length; i++) {
+        let cS = meetings[i][0];
+        let cE = meetings[i][1];
+        
+        if (cS <= mE) {
+            mE = Math.max(mE, cE);
+        }
+        else {
+            mIs.push([mS, mE]);
+            mS = cS;
+            mE = cE;
+        }
+    }
+    mIs.push([mS, mE]);
+    return mIs;
+}
