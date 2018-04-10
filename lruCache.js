@@ -41,7 +41,7 @@ LRUCache.prototype.put = function(key, value) {
         node = new ListNode(key, value)
         this.addToFront(node)
     } else {
-        node.val = val
+        node.val = value
         this.moveToFront(node)
     }
     this.map.set(key, node)
@@ -55,23 +55,28 @@ LRUCache.prototype.addToFront = function(node) {
         this.head.prev = node
         this.head = node
     }
+    node.prev = null
     if (!this.tail) this.tail = node
 }
 
 LRUCache.prototype.moveToFront = function(node) {
-    if (node.prev) node.prev.next = node.next
-    if (node.next) node.next.prev = node.prev
+    if (node.prev && node.next) {
+        node.prev.next = node.next
+        node.next.prev = node.prev
+    } else if (node === this.tail) {
+        this.tail = node.prev
+    }
     this.addToFront(node)
 }
 
 LRUCache.prototype.deleteLast = function() {
     let newLast = this.tail.prev
-    newLast.prev.next = this.tail
-    this.tail.prev = newLast.prev
-    this.map.delete(newLast.key)
+    let formerLast = this.tail
+    newLast.next = null
+    this.tail = newLast
+    this.map.delete(formerLast.key)
 }
-
-/** 
+/**
  * Your LRUCache object will be instantiated and called as such:
  * var obj = Object.create(LRUCache).createNew(capacity)
  * var param_1 = obj.get(key)
@@ -81,13 +86,10 @@ cache = new LRUCache( 2 /* capacity */ );
 
 cache.put(1, 1);
 cache.put(2, 2);
-console.log(cache.map)
 cache.get(1);       // returns 1
 cache.put(3, 3);    // evicts key 2
-console.log('size', cache.map.size)
-console.log(cache.map)
-console.log(cache.get(2));       // returns -1 (not found)
+cache.get(2);       // returns -1 (not found)
 cache.put(4, 4);    // evicts key 1
 cache.get(1);       // returns -1 (not found)
 cache.get(3);       // returns 3
-cache.get(4);       // returns 4
+console.log(cache.get(4));       // returns 4
