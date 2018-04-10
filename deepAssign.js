@@ -8,28 +8,28 @@
 
 // Example
 var person1 = {
-    name: "Anna",
-    property: "funny",
-    child: {
-      age: 3,
-      foo: "bar"
-    },
-    points: [0, 5],
-    type: 'human'
-};
+  name: 'Anna',
+  property: 'funny',
+  child: {
+    age: 3,
+    foo: 'bar'
+  },
+  points: [0, 5],
+  type: 'human'
+}
 
 var person2 = {
-    name: "James",
-    property: "witty",
-    child: {
-        foo: "bar2",
-        additionally: "addMe"
-    },
-    points: [10, 20, 30],
-    city: 'New York'
-};
+  name: 'James',
+  property: 'witty',
+  child: {
+    foo: 'bar2',
+    additionally: 'addMe'
+  },
+  points: [10, 20, 30],
+  city: 'New York'
+}
 
-console.log(deepAssign(person1, person2));
+console.log(deepAssign(person1, person2))
 // deepAssign(person1, person2) should return
 // {
 //     name: "James",
@@ -44,21 +44,25 @@ console.log(deepAssign(person1, person2));
 //     city: 'New York'
 // }
 
-// Possible improvements
-// 
-function deepAssign(obj1, obj2) {
-    // YOUR CODE GOES HERE!
-  const prop2 = Object.keys(obj2)
-  
-  for (let i = 0; i < prop2.length; i++) {
-    if (typeof obj2[prop2[i]] === 'object' && !Array.isArray(obj2[prop2[i]])) {
-      obj1[prop2[i]] = deepAssign(obj1[prop2[i]], obj2[prop2[i]])
-    }
-    else if (obj1.hasOwnProperty(prop2[i])) {
-      obj1[prop2[i]] = obj2[prop2[i]]
-    } else if (!obj1.hasOwnProperty(prop2[i])) {
-      obj1[prop2[i]] = obj2[prop2[i]]
-    }
-  }
-  return obj1
+function isObj(obj) {
+  return obj && typeof obj === 'object' && !Array.isArray(obj)
 }
+
+function deepAssign(obj1, obj2) {
+  let output = {}
+
+  Object.keys(obj2).forEach(prop => {
+    output[prop] = obj2[prop]
+  })
+
+  Object.keys(obj1).forEach(prop => {
+    if (isObj(obj1[prop])) {
+          output[prop] = deepAssign(obj1[prop], output[prop])
+    }
+    else if (!output.hasOwnProperty(prop)) {
+      output[prop] = obj1[prop]
+    }
+  })
+  return output
+}
+
