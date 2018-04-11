@@ -54,19 +54,19 @@ function merge(intervals) {
 }
 
 
-function merge (meetings) {
+function mergeE (intervals) {
     // Edge Case
-    if (!meetings || !meetings.length) return [];
+    if (!intervals || !intervals.length) return [];
     
-    meetings.sort((a,b) => a[0] - b[0]);
+    intervals.sort((a,b) => a[0] - b[0]);
     
     const mIs = [];
-    let mS = meetings[0][0];
-    let mE = meetings[0][1];
+    let mS = intervals[0][0];
+    let mE = intervals[0][1];
     
-    for (let i = 1; i < meetings.length; i++) {
-        let cS = meetings[i][0];
-        let cE = meetings[i][1];
+    for (let i = 1; i < intervals.length; i++) {
+        let cS = intervals[i][0];
+        let cE = intervals[i][1];
         
         if (cS <= mE) {
             mE = Math.max(mE, cE);
@@ -80,3 +80,5 @@ function merge (meetings) {
     mIs.push([mS, mE]);
     return mIs;
 }
+
+console.log(mergeE([[1,3],[2,6],[8,10],[15,18]]))

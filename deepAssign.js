@@ -57,12 +57,10 @@ function deepAssign(obj1, obj2) {
 
   Object.keys(obj1).forEach(prop => {
     if (isObj(obj1[prop])) {
-          output[prop] = deepAssign(obj1[prop], output[prop])
-    }
-    else if (!output.hasOwnProperty(prop)) {
+      output[prop] = deepAssign(obj1[prop], output[prop])
+    } else if (!output.hasOwnProperty(prop)) {
       output[prop] = obj1[prop]
     }
   })
   return output
 }
-
