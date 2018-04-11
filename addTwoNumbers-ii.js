@@ -48,7 +48,7 @@ var add = function(l1, l2) {
         if (p2) p2 = p2.next
     }
 
-    if (carry === 1) pSum = new ListNode(1)
+    if (carry === 1) pSum.next = new ListNode(1)
 
     return head
 }
