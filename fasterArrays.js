@@ -1,8 +1,10 @@
+// This is meant to be a demonstration of performance, between repeated array access and storing it in a variable
+
 function repeat (array) {
     let sum = 0
     for (let i = 0; i < 1000; i++) {
-        for (let j = 0; i < 100; j++) {
-            sum += array[50]
+        for (let j = 0; j < 1000; j++) {
+            sum += array[500]
         }
     }
     return sum
@@ -11,8 +13,8 @@ function repeat (array) {
 function noRepeat (array) {
     let sum = 0
     for (let i = 0; i < 1000; i++) {
-        let arrayValue = array[50]
-        for (let j = 0; i < 100; j++) {
+        let arrayValue = array[500]
+        for (let j = 0; j < 1000; j++) {
             sum += arrayValue
         }
     }
